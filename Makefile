@@ -56,7 +56,6 @@ INCLUDE=-I . -Iinclude
 VPATH	= .:source
 OBJDIR=./obj
 
-
 ##################################################################
 # Target specifications
 ##################################################################
@@ -93,6 +92,30 @@ OBJS_P563=\
 	$(OBJDIR)/tools.o \
 	$(OBJDIR)/vector_lib.o \
 
+OBJS_P563_feature=\
+	$(OBJDIR)/back_noise.o \
+	$(OBJDIR)/beeprob.o \
+	$(OBJDIR)/dsp.o \
+	$(OBJDIR)/Enhance.o \
+	$(OBJDIR)/EvalQual.o \
+	$(OBJDIR)/hosm.o \
+	$(OBJDIR)/inter_detect.o \
+	$(OBJDIR)/LpcAnalysis.o \
+	$(OBJDIR)/lpc.o \
+	$(OBJDIR)/mapping.o \
+	$(OBJDIR)/module1.o \
+	$(OBJDIR)/module2.o \
+	$(OBJDIR)/module3.o \
+	$(OBJDIR)/tools1.o \
+	$(OBJDIR)/pitch.o \
+	$(OBJDIR)/Quant.o \
+	$(OBJDIR)/SignalsPercept.o \
+	$(OBJDIR)/SpeechLib.o \
+	$(OBJDIR)/Statistics.o \
+	$(OBJDIR)/tools.o \
+	$(OBJDIR)/vector_lib.o \
+	$(OBJDIR)/p563_feature.o \
+
 
 #################################################################
 # compile files
@@ -106,7 +129,8 @@ $(OBJDIR)/%.o : %.c
 # targets
 ##################################################################
 binaries=\
-	$(OUTDIR)/p563
+	$(OUTDIR)/p563 \
+	$(OUTDIR)/p563_feature
 
 .PHONY: prepare clean
 all: $(binaries)
@@ -117,6 +141,7 @@ all: $(binaries)
 clean:
 	rm -f $(OBJDIR)/*.o
 	rm -f $(OUTDIR)/P563
+	rm -f $(OUTDIR)/p563_feature
 
 prepare:
 	mkdir -p $(OUTDIR)
@@ -132,3 +157,8 @@ uninstall:
 $(OUTDIR)/p563:$(OUTDIR) $(OBJS_P563)
 	@echo Making p563
 	$(LINK) $(OBJS_P563) -lm -o $(OUTDIR)/p563
+
+
+$(OUTDIR)/p563_feature:$(OUTDIR) $(OBJS_P563_feature)
+	@echo Making p563_feature
+	$(LINK) $(OBJS_P563_feature) -lm -o $(OUTDIR)/p563_feature
