@@ -31,4 +31,5 @@ file(GLOB header_file ./include/*.h)
 message(${src_file})
 
 add_executable(mos_feature ${src_file} ${header_file} ./src/p563_feature.c)
+target_link_libraries(mos_feature m)
 #direct_install(mos_feature ${CMAKE_CURRENT_SOURCE_DIR/../bin/})
